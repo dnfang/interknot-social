@@ -1,0 +1,14 @@
+<div id="register-background">
+    <div id="register-container">
+        <h3>Register an Inter-Knot account</h3>
+        <form [formGroup]="registerForm" (submit)="submitRegister()">
+            <input type="text" name="dname" placeholder="Enter a display name" formControlName="registerDisplayName" required>
+            <input type="text" name="uname" placeholder="Enter a username" formControlName="registerUsername" required>
+            <input type="{{ showPasswordFlag ? 'text' : 'password'}}" placeholder="Enter your password" name="psw" formControlName="registerPassword"  required>
+            <input type="{{ showPasswordFlag ? 'text' : 'password'}}" placeholder="Re-enter your password" name="pswvalidate" formControlName="registerPasswordValidate"  required>
+            <label for="show-password"><input type="checkbox" (click)="showPassword()" id="show-password">Show password</label>
+            <button type="submit">Register</button>
+        </form>
+        <a [routerLink]="['/']">Already have an account? Login</a> 
+    </div>
+</div>
