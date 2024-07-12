@@ -1,0 +1,13 @@
+#register-alert-container {
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+p {
+    margin: 0;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1.5px;
+}

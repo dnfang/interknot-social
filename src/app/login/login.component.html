@@ -2,8 +2,13 @@
     <div id="login-container">
         <h3>Login to your Inter-Knot account</h3>
         <form [formGroup]="loginForm" (submit)="submitLogin()">
+            @if (error === "'USERNAME INVALID'") {
+                <app-login-alert *ngIf="error === 'USERNAME INVALID'" [message]="'Username invalid'"></app-login-alert>
+            }
             <input type="text" name="uname" placeholder="Enter your Inter-Knot username" formControlName="loginUsername" required>
-
+            @if (error === "'PASSWORD INVALID'") {
+                <app-login-alert *ngIf="error === 'PASSWORD INVALID'" [message]="'Password invalid'"></app-login-alert>
+            }
             <input type="password" placeholder="Enter your password" name="psw" formControlName="loginPassword"  required>
             <button type="submit">Login</button>
         </form>
