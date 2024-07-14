@@ -1,4 +1,4 @@
-package interknot.backend;
+package interknot.backend.users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

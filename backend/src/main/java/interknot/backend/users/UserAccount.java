@@ -1,4 +1,4 @@
-package interknot.backend;
+package interknot.backend.users;
 
 import java.util.Objects;
 
@@ -14,6 +14,7 @@ public class UserAccount {
     private String displayName;
     private String username;
     private String profilePictureUrl;
+    private String bio;
 
     public UserAccount() {
 
@@ -23,6 +24,7 @@ public class UserAccount {
         this.username = username;
         this.displayName = displayName;
         this.profilePictureUrl = "";
+        this.bio = "";
     }
 
     public Long getId() {
@@ -41,6 +43,10 @@ public class UserAccount {
         return this.profilePictureUrl;
     }
 
+    public String getBio() {
+        return this.bio;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -55,6 +61,10 @@ public class UserAccount {
 
     public void setProfilePicUrl(String url) {
         this.profilePictureUrl = url;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     @Override

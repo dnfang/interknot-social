@@ -3,6 +3,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { RegisterAlertComponent } from '../register-alert/register-alert.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ export class RegisterComponent {
   showPasswordFlag: boolean = false;
   error: string = '';
 
+  constructor(private http: HttpClient) {}
 
   registerForm = new FormGroup({
     registerDisplayName: new FormControl(''),
@@ -36,9 +38,12 @@ export class RegisterComponent {
       this.error = 'PASSWORD EMPTY';
     } else if (this.registerForm.value.registerPassword !== this.registerForm.value.registerPasswordValidate) {
       this.error = 'PASSWORDS DO NOT MATCH';
+    } else {
+            
+      this.http.get('http://localhost:8080/users', {observe: 'response'}).subscribe(res => {
+        console.log('Response status:', res.status);
+        console.log('Body:', res.body);
+      });
     }
-
-    // check if username already registered
-    console.log(this.registerForm.value.registerPassword ?? '');
   }
 }

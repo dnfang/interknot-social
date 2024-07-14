@@ -1,4 +1,4 @@
-package interknot.backend;
+package interknot.backend.users;
 
 class UserNotFoundException extends RuntimeException {
 

@@ -1,23 +1,22 @@
 <div id="register-background">
     <div id="register-container">
         <h3>Register an Inter-Knot account</h3>
-        <app-register-alert [message]="'aasdas'"></app-register-alert>
         <form [formGroup]="registerForm" (submit)="submitRegister()">
-            @if (error === "'DISPLAY NAME EMPTY'") {
+            @if (error === "DISPLAY NAME EMPTY") {
                 <app-register-alert [message]="'Display name cannot be empty'"></app-register-alert>
             }
             <input type="text" name="dname" placeholder="Enter a display name" formControlName="registerDisplayName" required>
-            @if (error === "'USERNAME EMPTY'") {
+            @if (error === "USERNAME EMPTY") {
                 <app-register-alert [message]="'Username cannot be empty'"></app-register-alert>
-            } @else if (error === "'USERNAME TAKEN'") {
+            } @else if (error === "USERNAME TAKEN") {
                 <app-register-alert [message]="'Username taken. Please choose another username'"></app-register-alert>
             }
             <input type="text" name="uname" placeholder="Enter a username" formControlName="registerUsername" required>
-            @if (error === "'PASSWORD EMPTY'") {
+            @if (error === "PASSWORD EMPTY") {
                 <app-register-alert [message]="'Password cannot be empty'"></app-register-alert>
             } 
             <input type="{{ showPasswordFlag ? 'text' : 'password'}}" placeholder="Enter your password" name="psw" formControlName="registerPassword"  required>
-            @if (error === "'PASSWORDS DO NOT MATCH'") {
+            @if (error === "PASSWORDS DO NOT MATCH") {
                 <app-register-alert [message]="'Passwords do not match'"></app-register-alert>
             } 
             <input type="{{ showPasswordFlag ? 'text' : 'password'}}" placeholder="Re-enter your password" name="pswvalidate" formControlName="registerPasswordValidate"  required>
