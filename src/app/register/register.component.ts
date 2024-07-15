@@ -29,6 +29,19 @@ export class RegisterComponent {
       this.showPasswordFlag = !this.showPasswordFlag;
   }
 
+  checkUsernameRegistered(res: any, username: string): boolean {
+    if (res.body.hasOwnProperty("_embedded")) {
+      let usersList = res.body['_embedded']['userAccountList'];
+      for (let i = 0; i < usersList.length; i++) {
+        if (usersList[i]['username'] === username) {
+          return true;
+        }
+      }
+      return false;
+    }
+    return false;
+  }
+
   submitRegister() {
     if (!this.registerForm.value.registerDisplayName) {
       this.error = 'DISPLAY NAME EMPTY';
@@ -39,10 +52,21 @@ export class RegisterComponent {
     } else if (this.registerForm.value.registerPassword !== this.registerForm.value.registerPasswordValidate) {
       this.error = 'PASSWORDS DO NOT MATCH';
     } else {
-            
-      this.http.get('http://localhost:8080/users', {observe: 'response'}).subscribe(res => {
-        console.log('Response status:', res.status);
-        console.log('Body:', res.body);
+      this.http.get('http://localhost:8080/users', {observe: 'response'}).subscribe((res: any) => {
+        if (res.status === 200) {
+          // find if username exists already
+          if (this.checkUsernameRegistered(res, this.registerForm.value.registerUsername ?? '')) {
+            this.error = 'USERNAME TAKEN';
+            return
+          } 
+          let body = {
+            username: this.registerForm.value.registerUsername,
+            displayName: this.registerForm.value.registerDisplayName
+          }; 
+          this.http.post('http://localhost:8080/users', body).subscribe(res => {
+            // proceed to homepage
+          });
+        }
       });
     }
   }

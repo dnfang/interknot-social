@@ -20,7 +20,7 @@ public class UserAccount {
 
     }
 
-    public UserAccount(Long id, String username, String displayName) {
+    public UserAccount(String username, String displayName) {
         this.username = username;
         this.displayName = displayName;
         this.profilePictureUrl = "";
