@@ -15,16 +15,18 @@ public class UserAccount {
     private String username;
     private String profilePictureUrl;
     private String bio;
+    private String password;
 
     public UserAccount() {
 
     }
 
-    public UserAccount(String username, String displayName) {
+    public UserAccount(String username, String displayName, String password) {
         this.username = username;
         this.displayName = displayName;
         this.profilePictureUrl = "";
         this.bio = "";
+        this.password = password;
     }
 
     public Long getId() {
@@ -47,6 +49,10 @@ public class UserAccount {
         return this.bio;
     }
 
+    public String getPassword() {
+        return this.password;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -65,6 +71,10 @@ public class UserAccount {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

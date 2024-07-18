@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -27,6 +28,7 @@ class UserController {
     UserController(UserRepository repository) {
         this.userRepository = repository;
     }
+
 
     @GetMapping("/users")
     CollectionModel<EntityModel<UserAccount>> all() {
@@ -41,6 +43,8 @@ class UserController {
 
     @PostMapping("/users")
     EntityModel<UserAccount> newUser(@RequestBody UserAccount userAccount) {
+        String pwHash = BCrypt.hashpw(userAccount.getPassword(), BCrypt.gensalt());
+        userAccount.setPassword(pwHash);
         UserAccount user = userRepository.save(userAccount);
 
         return EntityModel.of(user,
@@ -61,7 +65,6 @@ class UserController {
             linkTo(methodOn(UserController.class).all()).withRel("users")
         );
     }
-    
 
     @PutMapping("/users/{id}")
     EntityModel<UserAccount> replaceUser(@PathVariable Long id, @RequestBody UserAccount userAccount) {

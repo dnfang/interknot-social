@@ -32,10 +32,10 @@ export class RegisterComponent {
   checkUsernameRegistered(res: any, username: string): boolean {
     if (res.body.hasOwnProperty("_embedded")) {
       let usersList = res.body['_embedded']['userAccountList'];
-      for (let i = 0; i < usersList.length; i++) {
-        if (usersList[i]['username'] === username) {
-          return true;
-        }
+      let user = usersList.find((u: { username: string; }) => u.username === username);
+
+      if (user) {
+        return true;
       }
       return false;
     }
@@ -61,7 +61,8 @@ export class RegisterComponent {
           } 
           let body = {
             username: this.registerForm.value.registerUsername,
-            displayName: this.registerForm.value.registerDisplayName
+            displayName: this.registerForm.value.registerDisplayName,
+            password: this.registerForm.value.registerPassword
           }; 
           this.http.post('http://localhost:8080/users', body).subscribe(res => {
             // proceed to homepage
