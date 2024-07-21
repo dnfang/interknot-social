@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { RegisterAlertComponent } from '../register-alert/register-alert.component';
 import { HttpClient } from '@angular/common/http';
 
@@ -16,7 +17,7 @@ export class RegisterComponent {
   showPasswordFlag: boolean = false;
   error: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   registerForm = new FormGroup({
     registerDisplayName: new FormControl(''),
@@ -65,7 +66,7 @@ export class RegisterComponent {
             password: this.registerForm.value.registerPassword
           }; 
           this.http.post('http://localhost:8080/users', body).subscribe(res => {
-            // proceed to homepage
+            this.router.navigate(['/']);
           });
         }
       });

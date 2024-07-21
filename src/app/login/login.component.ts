@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginAlertComponent } from '../login-alert/login-alert.component';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
@@ -16,7 +17,7 @@ import { catchError, throwError } from 'rxjs';
 export class LoginComponent {
   error: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
   
   loginForm = new FormGroup({
     loginUsername: new FormControl(''),
@@ -63,13 +64,13 @@ export class LoginComponent {
           catchError((error => {
             if (error instanceof HttpErrorResponse) {
               this.error = 'PASSWORD INVALID'
-              return throwError(() => new Error('abc'))
+              return throwError(() => new Error('Password Invalid'))
             }
-            return throwError(() => new Error('a'))
+            return throwError(() => new Error('An error occurred'))
           }))
         ).subscribe((res: any) => {
           this.error = '';
-          console.log('success');
+          this.router.navigate(['/']);
           return
         })
       }

@@ -1,0 +1,80 @@
+#navbar-container {
+    background-color: black;
+    max-height: 80px;
+    min-height: 80px;
+    max-width: 100%;
+    padding: 5px 90px 5px 90px;
+    display: flex;
+    align-items: center;
+
+}
+
+#signout {
+    min-height: 45px;
+    max-height: 45px;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100px;
+    color: red;
+    background-color: black;
+    border-radius: 26px;
+    border-color: red;
+    border-width: 5px;
+    border-style: solid;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+}
+
+#profile-navbar-container {
+    color: white;
+    background-color: gray;
+    border-radius: 26px;
+    margin-left: 20px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    min-height: 45px;
+    max-height: 45px;
+}
+
+#navbar-links {
+    margin-left: auto;
+    border-radius: 26px;
+    border-color: gray;
+    border-width: 5px;
+    border-style: solid;
+    min-height: 45px;
+    max-height: 45px;
+    width: 400px;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-around;
+}
+
+#navbar-links a {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-decoration: none;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    color: white;
+}
+
+
+
+#hamburger {
+    margin-left: 20px;
+}
+
