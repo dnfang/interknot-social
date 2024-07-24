@@ -65,7 +65,8 @@ export class RegisterComponent {
             displayName: this.registerForm.value.registerDisplayName,
             password: this.registerForm.value.registerPassword
           }; 
-          this.http.post('http://localhost:8080/users', body).subscribe(res => {
+          this.http.post('http://localhost:8080/users', body).subscribe((res: any) => {
+            localStorage.setItem("username", body.username ?? '');
             this.router.navigate(['/']);
           });
         }

@@ -1,0 +1,122 @@
+#profile-container {
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: gray;
+    padding: 10px 90px 10px 90px;
+}
+
+#profile-header {
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+}
+
+#profile-summary {
+    background-color: orange;
+    height: auto;
+    width: 100%;
+    border-radius: 26px;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#profile-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#profile-details label > img {
+    border-radius: 50%;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+    cursor: pointer;
+}
+
+#profile-details label > input[type='file'] {
+    display: none;
+}
+
+#profile-displayname {
+    margin-left: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#profile-bio {
+    display: block;
+}
+
+#profile-edit-container {
+    max-width: 300px;
+    float: right;
+    margin-left: auto;
+
+}
+
+#profile-edit-container p {
+    margin: 0;
+    text-align: center;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#edit-profile-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border: 0;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+
+#edit-profile-button img {
+    height: 20px;
+    width: 20px;
+}
+
+#profile-bio {
+    min-height: 200px;
+    max-height: 200px;
+    background-color: gray;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+#profile-bio p {
+    color: white;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    word-wrap: break-word;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

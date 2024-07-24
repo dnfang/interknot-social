@@ -1,80 +1,91 @@
-#navbar-container {
-    background-color: black;
-    max-height: 80px;
-    min-height: 80px;
-    max-width: 100%;
-    padding: 5px 90px 5px 90px;
+#dashboard-container {
+    padding: 10px 90px 10px 90px;
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    grid-auto-rows: 10px;
+    justify-content: center;
+    background-color: green;
+}
+
+.card-large {
+    background-color: red;
+    border-radius: 10px;
+    border-width: 50px;
+    margin: 5px;
+    grid-row-end: span 55;
+}
+
+.card-medium {
+    background-color: red;
+    border-radius: 10px;
+    border-width: 50px;
+    margin: 5px;
+    grid-row-end: span 33;
+}
+
+.card-small {
+    background-color: red;
+    border-radius: 10px;
+    border-width: 50px;
+    margin: 5px;
+    grid-row-end: span 20;
+}
+
+#post-filter {
+    position: fixed;
     display: flex;
+    justify-content: center;
     align-items: center;
-
-}
-
-#signout {
-    min-height: 45px;
-    max-height: 45px;
-    display: flex;
-    flex-shrink: 0;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    width: 100px;
-    color: red;
-    background-color: black;
-    border-radius: 26px;
-    border-color: red;
-    border-width: 5px;
-    border-style: solid;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: -1px;
-}
-
-#profile-navbar-container {
+    bottom: 20px;
+    right: 90px;
+    padding: 15px;
+    background-color: blue;
     color: white;
-    background-color: gray;
-    border-radius: 26px;
-    margin-left: 20px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    width: auto;
+    height: 70px;
+    border-radius: 45px;
     text-align: center;
-    min-height: 45px;
-    max-height: 45px;
+    font-size: 24px;
+    cursor: pointer;
 }
 
-#navbar-links {
-    margin-left: auto;
-    border-radius: 26px;
-    border-color: gray;
-    border-width: 5px;
-    border-style: solid;
-    min-height: 45px;
-    max-height: 45px;
-    width: 400px;
+#create-post-button {
+    position: fixed;
     display: flex;
-    flex-shrink: 0;
-    justify-content: space-around;
-}
-
-#navbar-links a {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-decoration: none;
-    font-weight: bold;
-    font-style: italic;
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: -1px;
+    justify-content: center;
+    align-items: center;
+    bottom: 20px;
+    left: 90px;
+    padding: 15px;
+    background-color: blue;
     color: white;
+    width: auto;
+    height: 70px;
+    border-radius: 45px;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
 }
 
-
-
-#hamburger {
-    margin-left: 20px;
+.post-filter-dropdown {
+    display: none;
 }
 
+.post-filter-dropdown.is-active {
+    display: block;
+    position: fixed;
+    bottom: 50px;
+    right: 10px;
+    background-color: white;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.post-filter-dropdown a {
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+}

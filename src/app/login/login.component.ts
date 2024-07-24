@@ -70,6 +70,7 @@ export class LoginComponent {
           }))
         ).subscribe((res: any) => {
           this.error = '';
+          localStorage.setItem("username", this.loginForm.value.loginUsername ?? '');
           this.router.navigate(['/']);
           return
         })

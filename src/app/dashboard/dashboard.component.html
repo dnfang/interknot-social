@@ -1,12 +1,27 @@
-<div id="navbar-container">
-    <a id="signout" href="#signout">Signout</a>
-    <div id="profile-navbar-container">ProfileCONtiner</div>
-    <div id="navbar-links">
-        <a href="#dashboard">Dashboard</a>
-        <a href="#messages">Messages</a>
-        <a href="#commissions">Comissions</a>
+@if (isAuthorised) {
+    <app-navbar></app-navbar>
+    <div id="dashboard-container">
+        <div class="card-large"></div>
+        <div class="card-small"></div>
+        <div class="card-large"></div>
+        <div class="card-medium"></div>
+        <div class="card-small"></div>
+        <div class="card-medium"></div>
+        <div class="card-small"></div>
+        <div class="card-medium"></div>
+        <div class="card-small"></div>
+        <div class="card-medium"></div>
+        <div class="card-small"></div>
+        <div class="card-medium"></div>
+        <div class="card-small"></div>
     </div>
-    <button id="hamburger">HAMICON</button>
-</div>
-<div id="dashboard-container"></div>
+
+    <button id="post-filter" (click)="togglePostDropdown()">Help Request Info</button>
+    <div class="post-filter-dropdown" [ngClass]="{'is-active': postDropdownOpen}">
+        <a>Help Request Info</a>
+        <a>All</a>
+    </div>
+    <button id="create-post-button">Create post</button>
+}
+
 

@@ -1,0 +1,23 @@
+<div id="navbar-container">
+    <a id="signout" (click)="signout()">Signout</a>
+    <div id="profile-navbar-container" (click)="profile()">
+        <img id="navbar-profile-pic" src="user.png" alt="user profile icon">
+        <p id="navbar-username">{{username}}</p>
+    </div>
+    <div id="navbar-links">
+        <a (click)="dashboard()">Dashboard</a>
+        <a (click)="messages()">Messages</a>
+        <a (click)="comissions()">Comissions</a>
+    </div>
+
+    <div id="navbar-burger" (click)="toggleNavbar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<div class="navbar-burger-menu" [ngClass]="{'is-active': navbarOpen}">
+    <a (click)="dashboard()">Dashboard</a>
+    <a (click)="messages()">Messages</a>
+    <a (click)="comissions()">Comissions</a>
+</div>
