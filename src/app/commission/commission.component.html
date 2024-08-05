@@ -1,0 +1,23 @@
+@if (isAuthorised) {
+    <app-navbar></app-navbar>
+    <div id="commissions-container">
+        <div id="commissions-main">
+            <div id="commissions-filter-container">
+                <button id="your-commissions" (click)="yourCommissions()">Your Commissions</button>
+                <button id="accepted-comissions" (click)="acceptedCommissions()">Accepted Commissions</button>
+            </div>
+
+            <div id="commissions-content">
+                @for (post of postList; track $index) {
+                    <div class="commission-item" (click)="viewCommission(post.id)">
+                        <p class="commission-author">{{post.displayName}}</p>
+                        <p class="commission-title">{{post.title}}</p>
+                    </div>
+                 }
+            </div>
+        </div>
+    </div>
+}
+    
+    
+    

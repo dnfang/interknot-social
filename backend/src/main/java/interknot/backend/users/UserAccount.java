@@ -2,9 +2,11 @@ package interknot.backend.users;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 
 @Entity
@@ -13,6 +15,8 @@ public class UserAccount {
     private @Id @GeneratedValue Long id;
     private String displayName;
     private String username;
+    @Lob
+    @Column(columnDefinition="TEXT")
     private String profilePictureUrl;
     private String bio;
     private String password;
@@ -41,7 +45,7 @@ public class UserAccount {
         return this.username;
     }
 
-    public String getProfilePicUrl() {
+    public String getProfilePictureUrl() {
         return this.profilePictureUrl;
     }
 

@@ -45,7 +45,7 @@ class UserController {
     EntityModel<UserAccount> newUser(@RequestBody UserAccount userAccount) {
         String pwHash = BCrypt.hashpw(userAccount.getPassword(), BCrypt.gensalt());
         userAccount.setPassword(pwHash);
-        UserAccount user = userRepository.save(userAccount);
+        UserAccount user = userRepository.saveAndFlush(userAccount);
 
         return EntityModel.of(user,
             linkTo(methodOn(UserController.class).one(user.getId())).withSelfRel(),
@@ -70,9 +70,9 @@ class UserController {
     EntityModel<UserAccount> replaceUser(@PathVariable Long id, @RequestBody UserAccount userAccount) {
         UserAccount user = userRepository.findById(id).map(u -> {
             u.setDisplayName(userAccount.getDisplayName());
-            u.setProfilePicUrl(userAccount.getProfilePicUrl());
+            u.setProfilePicUrl(userAccount.getProfilePictureUrl());
             u.setBio(userAccount.getBio());
-            return userRepository.save(u);
+            return userRepository.saveAndFlush(u);
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         return EntityModel.of(user,

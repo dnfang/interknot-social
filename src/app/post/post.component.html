@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+<div id="user-details-container">
+    <div id="user-profile-pic-container">
+        <img [src]="profileImg" alt="user-icon">
+    </div>
+    <div id="user-details-main">
+        <div id="user-name">
+            <p>{{displayName}}</p>
+        </div>
+        <div id="likes-container">
+            @if (likeStatus) {
+                <button id="likes-button-liked" (click)="like()">
+                    <div id="heart-icon">
+                        <img src="heart.png" alt="heart icon">
+                    </div>
+                    <p>{{likes}}</p>
+                </button>
+            }
+            @if (!likeStatus) {
+                <button id="likes-button" (click)="like()">
+                    <div id="heart-icon">
+                        <img src="heart.png" alt="heart icon">
+                    </div>
+                    <p>{{likes}}</p>
+                </button>
+            }
+        </div>
+    </div>
+</div>
+
+<div id="post-container">
+    <div id="post-thumbnail">
+        <img [src]="thumbnail" alt="thumbnail">
+    </div>
+
+    <div id="post-main-container">
+        <p id="post-title">[{{postType}}] {{title}}</p>
+        <p id="post-content">{{content}}</p>
+        @if (client && client === currentUser) {
+            <p class="commission-progress-text">Comission in progress</p>
+        }
+        @if (client && client !== currentUser) {
+            <p class="commission-progress-text">Comission already accepted by someone else</p>
+        }
+        @if (client === "" && username !== currentUser && postType === "Commission") {
+            <button id="accept-commission-button" (click)="acceptCommission()">Accept Comission</button>
+        }
+        @for (comment of commentList; track $index) {
+           <app-comment class="comment" [postId]="comment.postId"
+           [commentId]="comment.commentId"
+           [username]="comment.username"
+           [displayName]="comment.displayName"
+           [content]="comment.content"
+           ></app-comment> 
+        }
+        <div id="send-comment-container">
+            <form [formGroup]="commentForm" (submit)="submitComment()">
+                <input id="comment-input" type="text" name="comment" placeholder="Write a comment" formControlName="commentText" required>
+                <button id="comment-button" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,22 +1,54 @@
+@if (isAuthorised) {
 <app-navbar></app-navbar>
 <div id="profile-container">
     <p id="profile-header">Your Info</p>
     <div id="profile-summary">
         <div id="profile-details">
             <label>
-                <img src="user.png" alt="profile-avatar">
-                <input type="file" name="avatar-selector">
+                <img [src]="imgSrc" alt="profile-avatar">
+                <input type="file" name="avatar-selector" accept="image/png, image/jpeg" (change)="onImageSelect($event)">
             </label>
             <p id="profile-displayname">{{displayName}}</p>
             <div id="profile-edit-container">
-                <button id="edit-profile-button">
+                <button id="edit-profile-button" (click)="togglePopup()">
                     <img src="pencil.png" alt="pencil icon">
                 </button>
-                <p>{{username}}</p>
+
+                <div id="edit-profile-background" [ngClass]="{'is-active': popupOpen}">
+                    <div id="edit-profile-popup-container">
+                        <div id="edit-profile-popup-header">
+                            <p id="edit-profile-popup-p">Edit Profile</p>
+                            <button (click)="togglePopup()">
+                                <img src="close.png" alt="close icon">
+                            </button>
+                        </div>
+    
+                        <div id="edit-profile-main-container">
+                            <div id="edit-profile-main">
+                                <div class="edit-profile-item">
+                                    <p id="displayname">Display Name</p>
+                                    <form [formGroup]="profileForm" (submit)="submitDisplayName()">
+                                        <input type="text" name="dname" placeholder="Enter a display name" formControlName="editDisplayName" required>
+                                        <button type="submit">Save</button>
+                                    </form>
+                                </div>
+                                <div class="edit-profile-item">
+                                    <p id="bio">Bio</p>
+                                    <form [formGroup]="profileForm" (submit)="submitBio()">
+                                        <input type="text" name="bio" placeholder="Enter bio" formControlName="editBio" required>
+                                        <button type="submit">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p id="profile-username">{{username}}</p>
             </div>
         </div>
         <div id="profile-bio">
-            <p>asdnasldnasldnaskldnasklnasdsakljdaskldaskljdasdaksldjsakldjaskldjaskldjaksj</p>
+            <p>{{bioText}}</p>
         </div>
     </div>
 </div>
+}

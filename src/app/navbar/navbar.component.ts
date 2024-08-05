@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { RequestsService } from '../requests.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,15 +15,16 @@ export class NavbarComponent {
   navbarOpen: boolean = false;
   username: string = localStorage.getItem("username") ?? '';
   displayName: string | undefined;
+  imgSrc: string = 'user.png'
+  private requestsService = inject(RequestsService);
 
   constructor(private router: Router, private http: HttpClient) {
-    this.http.get('http://localhost:8080/users', {observe: 'response'}).subscribe((res: any) => {
-      if (res.status === 200) {
-        let usersList = res.body['_embedded']['userAccountList'];
-        let user = usersList.find((u: { username: string; }) => u.username === this.username);
-        this.displayName = user.displayName;
+    this.requestsService.getUserDetails(localStorage.getItem("username") ?? '').subscribe((user: any) => {
+      this.displayName = user.displayName;
+      if (user.profilePictureUrl) {
+        this.imgSrc = user.profilePictureUrl;
       }
-    });
+    })
   }
 
   toggleNavbar() {
@@ -46,7 +48,7 @@ export class NavbarComponent {
     this.router.navigate(['/messages']);
   }
 
-  comissions() {
-    this.router.navigate(['/comissions']);
+  commissions() {
+    this.router.navigate(['/commissions']);
   }
 }

@@ -12,7 +12,7 @@ class LoadUserDatabase {
   private static final Logger log = LoggerFactory.getLogger(LoadUserDatabase.class);
 
   @Bean
-  CommandLineRunner initDatabase(UserRepository repository) {
+  CommandLineRunner initUserDatabase(UserRepository repository) {
 
     return args -> {};
   }

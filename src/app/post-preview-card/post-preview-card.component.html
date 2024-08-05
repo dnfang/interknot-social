@@ -1,0 +1,24 @@
+<div class="post-preview-container" (click)="post()">
+    <div id="view-count-container">
+        <div id="eye-icon-container">
+            <img src="eye.png" alt="eye icon">
+        </div>
+        <p>{{views}}</p>
+    </div>
+    <div id="post-thumbnail">
+        <img [src]="thumbnail" alt="post thumbnail">
+    </div>
+
+    <div id="post-content-container">
+        
+        <div id="user-details-container">
+            <div id="poster-profile-pic">
+                <img [src]="profilePic" alt="profile picture">
+            </div>
+            <p>{{displayName}}</p>
+        </div>
+
+        <p id="post-title">[{{type}}] {{title}}</p>
+        <p id="post-content">{{content}}</p>
+    </div>
+</div>

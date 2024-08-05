@@ -34,7 +34,8 @@
 
 #profile-navbar-container {
     color: white;
-    background-color: gray;
+    background: rgb(20,20,20);
+    background: linear-gradient(rgba(20,20,20,1) 0%, rgba(41,41,41,1) 49%, rgba(28,28,28,1) 100%);
     border-radius: 26px;
     margin-left: 20px;
     padding: 5px;
@@ -55,7 +56,7 @@
     width: 40px;
 }
 
-#navbar-username {
+#navbar-displayname {
     margin: auto 10px auto 10px;
     font-weight: bold;
     font-size: 20px;
@@ -187,7 +188,7 @@
 }
 
 @media screen and (max-width: 470px) {
-    #navbar-username {
+    #navbar-displayname {
         display: none;
     }
 

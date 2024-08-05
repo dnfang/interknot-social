@@ -1,8 +1,8 @@
 #profile-container {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     box-sizing: border-box;
-    background-color: gray;
+    background-color: rgb(20, 20, 20);
     padding: 10px 90px 10px 90px;
 }
 
@@ -39,6 +39,12 @@
     border-color: black;
     border-style: solid;
     cursor: pointer;
+    object-fit: cover;
+    max-width: 64px;
+    min-width: 64px;
+    max-height: 64px;
+    min-height: 64px;
+
 }
 
 #profile-details label > input[type='file'] {
@@ -54,11 +60,10 @@
     letter-spacing: -1px;
     margin-top: auto;
     margin-bottom: auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
-#profile-bio {
-    display: block;
-}
 
 #profile-edit-container {
     max-width: 300px;
@@ -67,7 +72,7 @@
 
 }
 
-#profile-edit-container p {
+#profile-username {
     margin: 0;
     text-align: center;
     color: white;
@@ -106,9 +111,12 @@
 #profile-bio {
     min-height: 200px;
     max-height: 200px;
-    background-color: gray;
+    background-color: rgb(30, 30, 30);
     border-radius: 10px;
     padding: 15px;
+    display: block;
+    opacity: 0.8;
+    overflow-y: auto;
 }
 
 #profile-bio p {
@@ -120,3 +128,157 @@
     margin-top: 0px;
     margin-bottom: 0px;
 }
+
+/* POPUP*/
+#edit-profile-background {
+    display: none;
+}
+
+#edit-profile-background.is-active {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.7); /* Black background with opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#edit-profile-popup-container {
+    display: block;
+    width: 60%;
+    height: auto;
+    margin: auto;
+    background-color: black;
+    padding: 15px;
+    border-radius: 26px;
+}
+
+#edit-profile-popup-header {
+    display: flex;
+    flex-direction: row;
+}
+
+#edit-profile-popup-header button {
+    height: 55px;
+    width: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: red;
+    border-radius: 26px;
+    border: none;
+    margin-left: auto;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#edit-profile-popup-header button > img {
+    height: 50%;
+    width: 50%;
+}
+
+#edit-profile-popup-p {
+    color: white;
+    font-weight: bold;
+    font-size: 26px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+}
+
+#edit-profile-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-profile-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: rgb(20,20,20);
+    background: linear-gradient(rgba(20,20,20,1) 0%, rgba(41,41,41,1) 49%, rgba(28,28,28,1) 100%);
+    padding: 5px 15px 5px 15px;
+    border-radius: 26px;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.edit-profile-item form {
+    margin-left: auto;
+    background-color: black;
+    border-radius: 26px;
+    border: none;
+    padding-left: 26px;
+    padding-right: 26px;
+}
+
+.edit-profile-item input {
+    height: 26px;
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.edit-profile-item button {
+    border-radius: 26px;
+    border-style: solid;
+    border-color: gray;
+    font-size: 13px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    cursor: pointer;
+}
+
+.edit-profile-item::placeholder {
+    color: gray;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+#displayname {
+    color: white;
+    font-weight: bold;
+    font-size: 19px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+}
+
+#bio {
+    color: white;
+    font-weight: bold;
+    font-size: 19px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+}
+
+@media screen and (max-width: 890px) {
+    #profile-container {
+        padding: 10px 15px 10px 15px;
+    }
+
+    #edit-profile-popup-container {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    #profile-container {
+        padding: 10px 15px 10px 15px;
+    }
+
+    form {
+        width: 50%;
+    }
+}
+
+

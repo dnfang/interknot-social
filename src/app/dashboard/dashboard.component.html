@@ -1,27 +1,65 @@
 @if (isAuthorised) {
     <app-navbar></app-navbar>
     <div id="dashboard-container">
-        <div class="card-large"></div>
-        <div class="card-small"></div>
-        <div class="card-large"></div>
-        <div class="card-medium"></div>
-        <div class="card-small"></div>
-        <div class="card-medium"></div>
-        <div class="card-small"></div>
-        <div class="card-medium"></div>
-        <div class="card-small"></div>
-        <div class="card-medium"></div>
-        <div class="card-small"></div>
-        <div class="card-medium"></div>
-        <div class="card-small"></div>
+        @for (post of postList; track $index) {
+            <app-post-preview-card class="card" [id]="post.id"
+            [thumbnail]="post.thumbnailUrl"
+            [username]="post.username"
+            [displayName]="post.displayName"
+            [title]="post.title"
+            [content]="post.content"
+            [type]="post.postType"
+            [client]="post.client"
+            ></app-post-preview-card>
+            
+        }
     </div>
 
-    <button id="post-filter" (click)="togglePostDropdown()">Help Request Info</button>
-    <div class="post-filter-dropdown" [ngClass]="{'is-active': postDropdownOpen}">
-        <a>Help Request Info</a>
-        <a>All</a>
+    <button id="create-post-button" (click)="toggleCreatePost()">Create Post</button>
+
+    <div id="create-post-background" [ngClass]="{'is-active': createPostOpen}">
+        <div id="create-post-container">
+            <button id="close-create-post-button" (click)="toggleCreatePost()">
+                <img src="close.png" alt="close button">
+            </button>
+            <form [formGroup]="postForm" (submit)="submitPost()" id="post-form">
+                <label>
+                    @if (imgSrc) {
+                        <img [src]="imgSrc" alt="thumbnail upload">
+                    }
+                    @if (imgSrc === '') {
+                        <img src="image_upload.png" alt="thumbnail upload">
+                    }
+                    <input type="file" name="image-selector" accept="image/png, image/jpeg" (change)="onImageSelect($event)">
+                </label>
+                <div class="post-filter-radio">
+                    <input type="radio" id="post" name="postType" value="Post" formControlName="postType" checked="checked">
+                    <label for="post">Post</label><br>
+                    <input type="radio" id="notice" name="postType" value="Notice" formControlName="postType">
+                    <label for="notice">Notice</label><br>
+                    <input type="radio" id="gossip" name="postType" value="Gossip" formControlName="postType">
+                    <label for="gossip">Gossip</label><br>
+                    <input type="radio" id="commission" name="postType" value="Commission" formControlName="postType">
+                    <label for="commission">Commission</label><br>
+                </div>
+                <input id="ptitle" type="text" name="ptitle" placeholder="Enter a title" formControlName="postTitle" required>
+                <textarea id="ptext" type="text" name="ptext" placeholder="Write text for your post" formControlName="postText" required></textarea>
+                @if (postError === "INVALID_POST_TYPE") {
+                    <p>Post type must be selected</p>
+                }
+                @if (postError === "EMPTY_POST_TITLE") {
+                    <p>Post title can not be empty</p>
+                }
+                @if (postError === "EMPTY_POST_TEXT") {
+                    <p>Post text can not be empty</p>
+                }
+                @if (postError === "INVALID_IMAGE") {
+                    <p>Thumbnail must be uploaded</p>
+                }
+                <button type="submit">Create Post</button>
+            </form>
+        </div>
     </div>
-    <button id="create-post-button">Create post</button>
 }
 
 

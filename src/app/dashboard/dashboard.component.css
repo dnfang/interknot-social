@@ -6,7 +6,18 @@
     grid-template-columns: repeat(auto-fill, 250px);
     grid-auto-rows: 10px;
     justify-content: center;
-    background-color: green;
+    background: rgb(20,20,20);
+    min-height: 100vh;
+}
+
+.card:nth-child(odd) {
+    margin: 5px;
+    grid-row-end: span 40;
+}
+
+.card:nth-child(even) {
+    margin: 5px;
+    grid-row-end: span 35;
 }
 
 .card-large {
@@ -33,23 +44,6 @@
     grid-row-end: span 20;
 }
 
-#post-filter {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    bottom: 20px;
-    right: 90px;
-    padding: 15px;
-    background-color: blue;
-    color: white;
-    width: auto;
-    height: 70px;
-    border-radius: 45px;
-    text-align: center;
-    font-size: 24px;
-    cursor: pointer;
-}
 
 #create-post-button {
     position: fixed;
@@ -59,33 +53,194 @@
     bottom: 20px;
     left: 90px;
     padding: 15px;
-    background-color: blue;
+    background-color: black;
     color: white;
     width: auto;
     height: 70px;
     border-radius: 45px;
+    border-color: gray;
+    border-style: solid;
+    border-width: 5px;
     text-align: center;
     font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
     cursor: pointer;
 }
 
-.post-filter-dropdown {
+
+/* CREATE POST*/
+#create-post-background {
     display: none;
 }
 
-.post-filter-dropdown.is-active {
-    display: block;
+#create-post-background.is-active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    bottom: 50px;
-    right: 10px;
-    background-color: white;
     z-index: 1;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.7); /* Black background with opacity */
 }
 
-.post-filter-dropdown a {
-    color: black;
-    padding: 16px;
-    text-decoration: none;
-    display: block;
+#create-post-container {
+    background-color: black;
+    max-width: 60%;
+    min-width: 60%;
+    height: auto;
+    margin: auto;
+    padding: 15px;
+    border-radius: 26px;
+}
+
+#close-create-post-button {
+    height: 55px;
+    width: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: red;
+    border-radius: 26px;
+    border: none;
+    margin-left: auto;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#close-create-post-button > img {
+    height: 50%;
+    width: 50%;
+}
+
+#post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#post-form img {
+    max-width: 200px;
+    min-width: 200px;
+    border-radius: 26px;
+    border-color: gray;
+    border-style: solid;
+    border-width: 3px;
+    margin-bottom: 3px;
+    cursor: pointer;
+}
+
+#post-form input[type="file"] {
+    display: none;
+}
+
+.post-filter-radio {
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    margin-bottom: 3px;
+}
+
+#post-form > input, textarea {
+    margin-bottom: 5px;
+}
+
+#ptitle {
+    height: 30px;
+    border-radius: 26px;
+    text-indent: 10px;
+    border: none;
+    background: rgb(20,20,20);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+}
+
+#ptitle::placeholder {
+    color: gray;
+    font-weight: bold;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+}
+
+#ptext {
+    height: 90px;
+    border-radius: 15px;
+    border: none;
+    background: rgb(20,20,20);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 10px 10px 10px;
+    word-wrap: break-word;
+}
+
+#ptext::placeholder {
+    color: gray;
+    font-weight: bold;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    text-indent: 10px;
+}
+
+#post-form > p {
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+}
+
+#post-form > button {
+    height: auto;
+    border-radius: 26px;
+    border-width: 5px;
+    border-color: gray;
+    border-style: solid;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    background: rgb(20,20,20);
+    padding: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 678px) {
+    #dashboard-container {
+        grid-template-columns: repeat(auto-fill, 100%);
+        padding: 5px;
+    }
+
+    .card:nth-child(odd) {
+        grid-row-end: span 80;
+    }
+    
+    .card:nth-child(even) {
+        grid-row-end: span 45;
+    }
+
+    #create-post-button {
+        left: 15px;
+    }
+
+    #create-post-container {
+        max-width: 95%;
+        min-width: 95%;
+    }
 }
