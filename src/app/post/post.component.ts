@@ -38,6 +38,7 @@ export class PostComponent {
       this.commentList = comments.filter((c: { postId: number; }) => c.postId === this.id)
     });
 
+    // Fetch and initialize likes for this post and check if the current user has liked the post
     this.requestsService.getLikes().subscribe((likes: any) => {
       this.likesList = likes;
       this.likes = this.likesList.length
@@ -69,13 +70,19 @@ export class PostComponent {
 
   }
 
+  // Form for comment submission
   commentForm = new FormGroup({
     commentText: new FormControl(''),
   });
 
+  /**
+   * Toggles the like status of the post and updates the server accordingly.
+   * Adds or removes a like based on the current like status.
+   */
   like() {
     this.likeStatus = !this.likeStatus;
     if (this.likeStatus) { 
+      // Add a like if the post is not already liked by the user
       this.requestsService.getUserDetails(localStorage.getItem("username") ?? '').subscribe((user: any) => {
         let body = {
           userId: user.id,
@@ -88,6 +95,7 @@ export class PostComponent {
         this.likes += 1;
       })
     } else {
+      // Remove the like if the post was already liked by the user
       this.requestsService.getUserDetails(localStorage.getItem("username") ?? '').subscribe((user: any) => {
         this.requestsService.getLikes().subscribe((likes: any) => {
           let likeObj = likes.find((l: { postId: number; username: string; }) => l.username === user.username && l.postId === this.id);
@@ -99,6 +107,10 @@ export class PostComponent {
     }
   }
 
+  /**
+   * Submits a new comment on the post.
+   * Validates the comment and updates the server and local list of comments.
+   */
   submitComment() {
     if (!this.commentForm.value.commentText) {
       return
@@ -121,6 +133,10 @@ export class PostComponent {
     })
   }
 
+  /**
+   * Accepts the commission for the post.
+   * Updates the post with the current client information.
+   */
   acceptCommission() {
     this.client = localStorage.getItem("username") ?? '';
     let body = {

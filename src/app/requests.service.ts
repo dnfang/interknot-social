@@ -46,7 +46,6 @@ export class RequestsService {
     })
   }
 
-
   getPosts() {
     let posts = new Subject<any>();
     this.http.get('http://localhost:8080/posts', {observe: 'response'}).subscribe((res: any) => {
@@ -90,20 +89,42 @@ export class RequestsService {
     })
   }
 
+  getMessages() {
+    let messages = new Subject<any>();
+    this.http.get('http://localhost:8080/messages', {observe: 'response'}).subscribe((res: any) => {
+      if (res.status === 200) {
+        if (res.body.hasOwnProperty("_embedded")) {
+          messages.next(res.body['_embedded']['messageList']);
+          return
+        }
+        messages.next([]);
+      }
+    });
+    return messages.asObservable();
+  }
 
+  getMessageDetails(id: number) {
+    let message = new Subject<Object>();
+    this.getMessages().subscribe(messages => {
+      let messageObj = messages.find((m: { id: number; }) => m.id === id);
+      message.next(messageObj);
+    })
 
+    return message.asObservable();
+  }
 
+  addMessage(messageBody: Object) {
+    let body = new Subject<any>();
+    this.http.post('http://localhost:8080/messages', messageBody).subscribe((res: any) => {
+      body.next(messageBody);
+    });
+    return body.asObservable();
+  }
 
-
-
-
-
-
-
-
-
-
-
+  deleteMessage(id: number) {
+    this.http.delete('http://localhost:8080/messages/' + id, {observe: 'response'}).subscribe((res: any) => {
+    })
+  }
 
   getComments() {
     let comments = new Subject<any>();
@@ -147,10 +168,6 @@ export class RequestsService {
 
     })
   }
-
-
-
-
 
   getLikes() {
     let likes = new Subject<any>();

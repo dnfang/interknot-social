@@ -135,7 +135,7 @@
     color: gray;
     margin-bottom: 10px;
     margin-top: 1px;
-    word-break: break-all;
+    word-break: keep-all;
 }
 
 .commission-progress-text {

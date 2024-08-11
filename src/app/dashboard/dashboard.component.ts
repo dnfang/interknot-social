@@ -39,22 +39,24 @@ export class DashboardComponent {
       for (let i = 0; i < res.length; i++) {
         this.postList.push(res[i])
       }
-      console.log(this.postList)
     })
   }
 
+  // Form for post creation
   postForm = new FormGroup({
     postType: new FormControl(''),
     postTitle: new FormControl(''),
     postText: new FormControl(''),
   });
 
+  // Handles image file selection and updates imgSrc with the image data
   onImageSelect(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const file = input.files[0];
       const reader = new FileReader();
 
+      // On successful file read, update imgSrc with image data URL
       reader.onload = () => {
         this.imgSrc = reader.result;
       }
@@ -71,7 +73,9 @@ export class DashboardComponent {
     this.createPostOpen = !this.createPostOpen;
   }
 
+  // Handles post submission by validating the form and sending data to the server
   submitPost() {
+    // Validate form fields and set appropriate error messages
     if (!this.postForm.value.postType) {
       this.postError = 'INVALID_POST_TYPE';
       return
@@ -85,6 +89,8 @@ export class DashboardComponent {
       this.postError = 'INVALID_IMAGE';
       return
     }
+
+    // Post data
     let body = {
       thumbnailUrl: this.imgSrc,
       title: this.postForm.value.postTitle,
@@ -95,6 +101,8 @@ export class DashboardComponent {
       views: 0,
       client: '',
     }
+
+    // Send post data to the server
     this.requestsService.addPost(body).subscribe((res: any) => {
       this.toggleCreatePost();
       this.postError = '';
@@ -105,6 +113,7 @@ export class DashboardComponent {
         postText: new FormControl(''),
       });
 
+      // Fetch updated posts and add the newly created post to the list
       this.requestsService.getPosts().subscribe((res: any) => {
         let post = res.pop();
         if (post) {

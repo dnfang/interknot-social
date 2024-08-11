@@ -24,12 +24,14 @@
             </button>
             <form [formGroup]="postForm" (submit)="submitPost()" id="post-form">
                 <label>
-                    @if (imgSrc) {
-                        <img [src]="imgSrc" alt="thumbnail upload">
-                    }
-                    @if (imgSrc === '') {
-                        <img src="image_upload.png" alt="thumbnail upload">
-                    }
+                    <div id="image-upload-container">
+                        @if (imgSrc) {
+                            <img [src]="imgSrc" alt="thumbnail upload">
+                        }
+                        @if (imgSrc === '') {
+                            <img src="image_upload.png" alt="thumbnail upload">
+                        }
+                    </div>
                     <input type="file" name="image-selector" accept="image/png, image/jpeg" (change)="onImageSelect($event)">
                 </label>
                 <div class="post-filter-radio">

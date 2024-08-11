@@ -7,7 +7,7 @@
     border-left: 0px;
     border-right: 0px;
     border-bottom: 3px;
-    border-color: gray;
+    border-color: rgb(28, 28, 28);
     border-style: solid;
 }
 
@@ -54,6 +54,6 @@
     color: gray;
     margin-top: 1px;
     margin-bottom: 3px;
-    word-break: break-all;
+    word-break: keep-all;
 
 }

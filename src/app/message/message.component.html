@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+<div id="messages-container">
+    <div id="search-bar-container">
+        <form [formGroup]="searchForm" (submit)="onSearch()" id="search-form">
+            <input id="search-input" type="text" name="searchInput" placeholder="Search users..." formControlName="searchTerm" (input)="onSearch()" required>
+        </form>
+        <div class="results" id="results">
+            @for (user of filteredUsers; track $index) {
+                <div class="user-result" (click)="displayUser(user.id, user.displayName, user.username)">
+                    <p>{{user.displayName}}</p>
+                    <p>{{user.username}}</p>
+                </div>
+            }
+        </div>
+    </div>
+    
+    <div id="main-container">
+        <div id="messages-replies">
+            @for (message of messageReplies; track $index) {
+                <div class="message-reply-item">
+                    <app-message-recent-item [id]="message.id"
+                    [userId]="message.senderId"
+                    [username]="message.senderUsername"
+                    [displayName]="message.senderDisplayName"
+                    [message]="message.content"
+                    (click)="viewMessage(message.senderId, message.senderUsername, message.senderDisplayName)"
+                    ></app-message-recent-item>
+                </div>
+            }
+        </div>
+
+        <div id="message-content-container">
+            @if (receiverUsername === '') {
+                <p id="no-user-selected">Select or search for a user to start messaging</p>
+            }
+            
+            @if (receiverUsername !== '') {
+            <div id="message-receiver-container">
+                <div id="message-icon-container">
+                    <img src="message_bubble.png" alt="message bubble">
+                </div>
+                <p id="message-receiver-user">{{receiverDisplayName}}</p>
+            </div>
+
+            <div id="message-main">
+                @for (message of messageLog; track $index) {
+                    <app-message-reply [content]="message.content"
+                    [username]="message.senderUsername"
+                    ></app-message-reply>
+                }
+                <div id="reply-container">
+                    <div id="reply-main">
+                        <form [formGroup]="replyForm" (submit)="submitReply()" id="reply-form">
+                            <input id="reply-input" type="text" name="replyInput" placeholder="REPLY" formControlName="replyMessage" required>
+                        </form>
+                    </div>
+                    <div id="sender-pic-container">
+                        <img [src]="senderProfilePic" alt="Sender profile picture">
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>

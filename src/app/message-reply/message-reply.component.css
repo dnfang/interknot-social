@@ -1,0 +1,42 @@
+.message-reply-container {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+#message-reply-profile-pic-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    flex-shrink: 0;
+}
+
+#message-reply-profile-pic-container > img {
+    border-radius: 50%;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+    object-fit: cover;
+    height: 50%;
+    width: 50%;
+}
+
+#message-contents-container {
+    background-color: white;
+    margin-left: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+#message-contents-container > p {
+    font-weight: bold;
+    font-size: 23px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    color: gray;
+}

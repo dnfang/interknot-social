@@ -49,7 +49,7 @@
     align-items: center;
     flex-direction: column;
     min-height: auto;
-    max-height: 400px;
+    max-height: 156px;
     background-color: orange;
 }
 
@@ -72,7 +72,7 @@
     border-left: 0px;
     border-right: 0px;
     border-style: solid;
-    border-color: black;
+    border-color: rgb(38, 38, 38);
 
 }
 
@@ -103,6 +103,8 @@
     text-align: center;
     overflow-y: hidden;
     overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #post-title {

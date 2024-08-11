@@ -21,6 +21,7 @@ export class RegisterComponent {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  // Form for user registration
   registerForm = new FormGroup({
     registerDisplayName: new FormControl(''),
     registerUsername: new FormControl(''),
@@ -32,6 +33,11 @@ export class RegisterComponent {
       this.showPasswordFlag = !this.showPasswordFlag;
   }
 
+  /**
+   * Handles form submission for user registration.
+   * Validates the form and checks if the username is already taken.
+   * If validation passes and username is available, it registers the user.
+   */
   submitRegister() {
     if (!this.registerForm.value.registerDisplayName) {
       this.error = 'DISPLAY NAME EMPTY';
@@ -43,11 +49,13 @@ export class RegisterComponent {
       this.error = 'PASSWORDS DO NOT MATCH';
     } else {
       this.requestsService.getUsers().subscribe(users => {
+        // Fetch existing users to check if the username is already taken
         let user = users.find((u: { username: string; }) => u.username === this.registerForm.value.registerUsername);
         if (user) {
           this.error = 'USERNAME TAKEN';
           return;
         }
+        // If username is available, proceed with registration
         let body = {
           username: this.registerForm.value.registerUsername,
           displayName: this.registerForm.value.registerDisplayName,

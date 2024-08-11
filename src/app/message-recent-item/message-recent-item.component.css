@@ -1,0 +1,65 @@
+.message-recent-container {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-radius: 50px;
+    border-width: 3px;
+    border-color: rgb(30, 30, 30);
+    border-style: solid;
+    background: rgb(20,20,20);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+#sender-profile-pic-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    flex-shrink: 0;
+}
+
+#sender-profile-pic-container> img {
+    height: 80%;
+    width: 80%;
+    border-radius: 50%;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+}
+
+#message-recent-content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-left: 5px;
+}
+
+#sender-display-name {
+    font-weight: bold;
+    font-size: 23px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    color: white;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+#message-content {
+    font-weight: bold;
+    font-size: 23px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    color: gray;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}

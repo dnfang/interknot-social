@@ -5,6 +5,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { PostComponent } from "./post/post.component";
 import { CommissionComponent } from "./commission/commission.component";
+import { MessageComponent } from "./message/message.component";
 
 const routeConfig: Routes = [
   {
@@ -36,6 +37,11 @@ const routeConfig: Routes = [
     path: 'commissions',
     component: CommissionComponent,
     title: 'Comissions | Inter-Knot',
+  },
+  {
+    path: 'messages',
+    component: MessageComponent,
+    title: 'Messages | Inter-Knot',
   },
 ];
 export default routeConfig;
