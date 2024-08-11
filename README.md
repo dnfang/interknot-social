@@ -34,7 +34,7 @@ Create a database in PostgreSQL called `interknot`
 CREATE DATABASE interknot;
 ```
 
-Configure [application.properties](application.properties) located in `/backend/src/main/resources/` to the following. If you are hosting the database to a different configuration, change the properties to reflect your configuration.
+Configure [application.properties](application.properties) located in `/backend/src/main/resources/` to the following. If you are hosting the database to a different configuration, change the properties to reflect your configuration. The `username` and `password` fields are your login details you use to access the PostgreSQL databases on your system.
 ```
 spring.application.name=backend
 spring.datasource.url=jdbc:postgresql://localhost:5432/interknot
