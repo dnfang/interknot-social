@@ -7,6 +7,14 @@ A social network website made with [Angular 18](https://angular.dev/), [Spring B
 - Commisions, enabling users to outsource tasks to the community
 - Messaging system
 
+![alt text](https://github.com/dnfang/interknot-social/blob/main/dashboard.png "Dashboard png")
+
+  
+![alt text](https://github.com/dnfang/interknot-social/blob/main/commissions.png "Commissions png")
+
+  
+![alt text](https://github.com/dnfang/interknot-social/blob/main/messages.png "Messages png")
+
 ## Development Setup
 
 ### Prerequisites
@@ -21,12 +29,12 @@ Clone the project
 git clone git@github.com:dnfang/interknot-social.git
 ```
 
-Create a database in PostgreSQL called interknot
+Create a database in PostgreSQL called `interknot`
 ```
 CREATE DATABASE interknot;
 ```
 
-Configure application.properties located in /backend/src/main/resources/ to the following. If you are hosting the database to a different configuration, change the properties to reflect your configuration.
+Configure [application.properties](application.properties) located in `/backend/src/main/resources/` to the following. If you are hosting the database to a different configuration, change the properties to reflect your configuration.
 ```
 spring.application.name=backend
 spring.datasource.url=jdbc:postgresql://localhost:5432/interknot
@@ -39,7 +47,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 server.error.include-message=always
 ```
 
-Install the required modules by navigating to the root level of this project (where package.json is located)
+Install the required modules by navigating to the root level of this project (where [package.json](package.json) is located)
 ```
 npm install
 ```
@@ -55,7 +63,7 @@ Start the frontend
 ng serve
 ```
 
-The frontend can be accessed at http://localhost:4200/.
+The frontend can be accessed at `http://localhost:4200/`.
 
 ## License
 [MIT](https://opensource.org/licenses/MIT)
